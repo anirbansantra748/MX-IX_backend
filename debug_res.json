@@ -1,0 +1,42 @@
+{
+  "id": "new-1768826688014",
+  "name": "dffg",
+  "coordinates": [
+    0,
+    0
+  ],
+  "code": "NEW_LOC",
+  "region": "SOUTH-AMERICA",
+  "asns": 0,
+  "sites": 0,
+  "asnList": [],
+  "enabledSites": [],
+  "status": "upcoming",
+  "country": "",
+  "continentId": "south-america",
+  "latency": "1.0",
+  "datacenter": "",
+  "address": "",
+  "ixName": "",
+  "peers": 0,
+  "capacity": "100+",
+  "portSpeeds": [
+    "1G",
+    "10G",
+    "100G"
+  ],
+  "protocols": [
+    "BGP-4",
+    "IPv4",
+    "IPv6"
+  ],
+  "features": [],
+  "description": "",
+  "established": "",
+  "cityImage": "",
+  "pricing": [],
+  "_id": "696e2747fb0be2043a2e4eb4",
+  "createdAt": "2026-01-19T12:44:55.776Z",
+  "updatedAt": "2026-01-19T12:44:55.776Z",
+  "__v": 0
+}

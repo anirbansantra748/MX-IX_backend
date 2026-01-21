@@ -1,0 +1,26 @@
+{
+  "id": "new-1768826688014",
+  "name": "dffg",
+  "coordinates": [
+    0,
+    0
+  ],
+  "code": "NEW_LOC",
+  "region": "SOUTH-AMERICA",
+  "continentId": "south-america",
+  "status": "upcoming",
+  "pricing": [],
+  "asnList": [],
+  "enabledSites": [],
+  "portSpeeds": [
+    "1G",
+    "10G",
+    "100G"
+  ],
+  "protocols": [
+    "BGP-4",
+    "IPv4",
+    "IPv6"
+  ],
+  "features": []
+}
