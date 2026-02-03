@@ -1,4 +1,5 @@
 import { User, NetworkStats, GlobalFabricStats, Location, Continent } from '../models';
+import GlobalStats from '../models/globalStats.model';
 import config from '../config/environment';
 import { seedServices } from './seedServices.service';
 
@@ -31,7 +32,7 @@ const defaultLocations = [
       { id: 'del-5', name: 'Yotta Noida', provider: 'Yotta', address: 'Greater Noida, UP 201306', status: 'coming-soon' as const }
     ]
   },
-  { id: 'bom', name: 'Mumbai', coordinates: [72.8777, 19.076] as [number, number], code: 'BOM_WEST', region: 'ASIA', status: 'current' as const,
+  { id: 'bom', name: 'Mumbai', coordinates: [72.8777, 19.076] as [number, number], code: 'BOM_WEST', region: 'ASIA', status: 'upcoming' as const,
     asnList: [
       { asnNumber: 9498, name: 'Bharti Airtel Ltd.', macro: '', peeringPolicy: 'Selective' as const, status: 'ACTIVE' as const },
       { asnNumber: 45609, name: 'Tata Teleservices (Maharashtra) Limited', macro: '', peeringPolicy: 'Open' as const, status: 'ACTIVE' as const },
@@ -58,7 +59,7 @@ const defaultLocations = [
       { id: 'maa-4', name: 'Sify Navallur DC', provider: 'Sify', address: 'Navallur, Chennai 600130', status: 'coming-soon' as const }
     ]
   },
-  { id: 'ccu', name: 'Kolkata', coordinates: [88.3639, 22.5726] as [number, number], code: 'CCU_EAST', region: 'ASIA', status: 'current' as const,
+  { id: 'ccu', name: 'Kolkata', coordinates: [88.3639, 22.5726] as [number, number], code: 'CCU_EAST', region: 'ASIA', status: 'upcoming' as const,
     asnList: [
       { asnNumber: 9498, name: 'Bharti Airtel Ltd.', macro: '', peeringPolicy: 'Selective' as const, status: 'ACTIVE' as const },
       { asnNumber: 4755, name: 'Tata Communications Ltd', macro: '', peeringPolicy: 'Open' as const, status: 'ACTIVE' as const },
@@ -70,7 +71,7 @@ const defaultLocations = [
       { id: 'ccu-3', name: 'GPX Kolkata', provider: 'GPX', address: 'Newtown, Kolkata 700135', status: 'coming-soon' as const }
     ]
   },
-  { id: 'hyd', name: 'Hyderabad', coordinates: [78.4867, 17.3850] as [number, number], code: 'HYD_CENTRAL', region: 'ASIA', status: 'current' as const,
+  { id: 'hyd', name: 'Hyderabad', coordinates: [78.4867, 17.3850] as [number, number], code: 'HYD_CENTRAL', region: 'ASIA', status: 'upcoming' as const,
     asnList: [
       { asnNumber: 9498, name: 'Bharti Airtel Ltd.', macro: '', peeringPolicy: 'Selective' as const, status: 'ACTIVE' as const },
       { asnNumber: 4755, name: 'Tata Communications Ltd', macro: '', peeringPolicy: 'Open' as const, status: 'ACTIVE' as const },
@@ -84,7 +85,7 @@ const defaultLocations = [
       { id: 'hyd-4', name: 'Amazon Hyderabad', provider: 'AWS', address: 'Kondapur, Hyderabad 500084', status: 'coming-soon' as const }
     ]
   },
-  { id: 'blr', name: 'Bangalore', coordinates: [77.5946, 12.9716] as [number, number], code: 'BLR_SOUTH', region: 'ASIA', status: 'current' as const,
+  { id: 'blr', name: 'Bangalore', coordinates: [77.5946, 12.9716] as [number, number], code: 'BLR_SOUTH', region: 'ASIA', status: 'upcoming' as const,
     asnList: [
       { asnNumber: 9498, name: 'Bharti Airtel Ltd.', macro: '', peeringPolicy: 'Selective' as const, status: 'ACTIVE' as const },
       { asnNumber: 4755, name: 'Tata Communications Ltd', macro: '', peeringPolicy: 'Open' as const, status: 'ACTIVE' as const },
@@ -101,7 +102,7 @@ const defaultLocations = [
     ]
   },
   // Current (Live) Location - Middle East
-  { id: 'dxb', name: 'Dubai', coordinates: [55.2708, 25.2048] as [number, number], code: 'DXB_GULF', region: 'MIDDLE EAST', status: 'current' as const,
+  { id: 'dxb', name: 'Dubai', coordinates: [55.2708, 25.2048] as [number, number], code: 'DXB_GULF', region: 'MIDDLE EAST', status: 'upcoming' as const,
     asnList: [
       { asnNumber: 5384, name: 'Emirates Telecommunications Corporation (Etisalat)', macro: '', peeringPolicy: 'Selective' as const, status: 'ACTIVE' as const },
       { asnNumber: 8966, name: 'Emirates Integrated Telecommunications Company (du)', macro: '', peeringPolicy: 'Selective' as const, status: 'ACTIVE' as const },
@@ -117,22 +118,22 @@ const defaultLocations = [
     ]
   },
   // Upcoming Locations
-  { id: 'lax', name: 'Los Angeles', coordinates: [-118.2437, 34.0522] as [number, number], code: 'LAX_WEST', region: 'NORTH AMERICA', status: 'upcoming' as const,
+  { id: 'lax', name: 'Los Angeles', coordinates: [-118.2437, 34.0522] as [number, number], code: 'LAX_WEST', region: 'NORTH AMERICA', status: 'current' as const,
     asnList: [], enabledSites: []
   },
-  { id: 'sjc', name: 'Silicon Valley', coordinates: [-121.8863, 37.3382] as [number, number], code: 'SJC_VALLEY', region: 'NORTH AMERICA', status: 'upcoming' as const,
+  { id: 'sjc', name: 'Silicon Valley', coordinates: [-121.8863, 37.3382] as [number, number], code: 'SJC_VALLEY', region: 'NORTH AMERICA', status: 'current' as const,
     asnList: [], enabledSites: []
   },
   { id: 'vie', name: 'Vienna', coordinates: [16.3738, 48.2082] as [number, number], code: 'VIE_EU', region: 'EUROPE', status: 'upcoming' as const,
     asnList: [], enabledSites: []
   },
-  { id: 'qro', name: 'Queretaro', coordinates: [-100.3899, 20.5888] as [number, number], code: 'QRO_MX', region: 'NORTH AMERICA', status: 'upcoming' as const,
+  { id: 'qro', name: 'Queretaro', coordinates: [-100.3899, 20.5888] as [number, number], code: 'QRO_MX', region: 'NORTH AMERICA', status: 'current' as const,
     asnList: [], enabledSites: []
   },
-  { id: 'eze', name: 'Buenos Aires', coordinates: [-58.3816, -34.6037] as [number, number], code: 'EZE_SA', region: 'SOUTH AMERICA', status: 'upcoming' as const,
+  { id: 'eze', name: 'Buenos Aires', coordinates: [-58.3816, -34.6037] as [number, number], code: 'EZE_SA', region: 'SOUTH AMERICA', status: 'current' as const,
     asnList: [], enabledSites: []
   },
-  { id: 'fjr', name: 'Fujairah', coordinates: [56.3414, 25.1288] as [number, number], code: 'FJR_UAE', region: 'MIDDLE EAST', status: 'upcoming' as const,
+  { id: 'fjr', name: 'Fujairah', coordinates: [56.3414, 25.1288] as [number, number], code: 'FJR_UAE', region: 'MIDDLE EAST', status: 'current' as const,
     asnList: [], enabledSites: []
   }
 ];
@@ -217,6 +218,20 @@ export const seedDatabase = async (): Promise<void> => {
       console.log(`✅ ${defaultLocations.length} locations created`);
     } else {
       console.log(`ℹ️ Locations already exist (${existingLocations} found)`);
+    }
+
+    // Seed global stats
+    const existingGlobalStats = await GlobalStats.findOne();
+    if (!existingGlobalStats) {
+      await GlobalStats.create({
+        totalCapacity: { value: 450, unit: 'Tbps' },
+        peakTraffic: { value: 156.2, unit: 'Tbps', trend: 'up', trendValue: '+8.1%' },
+        connectedNetworks: { value: 4921, unit: 'Peers', trend: 'up', trendValue: '+47' },
+        ipv4Prefixes: { value: 892345, unit: 'Routes', trend: 'stable' },
+      });
+      console.log('✅ Global stats created');
+    } else {
+      console.log('ℹ️ Global stats already exists');
     }
 
 

@@ -7,6 +7,7 @@ import locationsRoutes from './locations.routes';
 import contactsRoutes from './contacts.routes';
 import continentsRoutes from './continents.routes';
 import grafanaRoutes from './grafana.routes';
+import statsRoutes from './stats.routes';
 
 const router = Router();
 
@@ -28,5 +29,6 @@ router.use('/locations', locationsRoutes);
 router.use('/contacts', contactsRoutes);
 router.use('/continents', continentsRoutes);
 router.use('/grafana', grafanaRoutes);
+router.use('/stats', statsRoutes);
 
 export default router;
