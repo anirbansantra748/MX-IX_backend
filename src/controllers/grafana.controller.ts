@@ -50,6 +50,9 @@ const bitsToGbps = (bits: number): number => {
 // Helper to query Grafana's Zabbix datasource
 const queryZabbixData = async (query: TrafficQuery, timeRange: { from: string; to: string }) => {
   try {
+    console.log(`[Grafana Query] ${query.host} - ${query.item}`);
+    console.log(`[Grafana Query] Time range: ${timeRange.from} to ${timeRange.to}`);
+    
     const response = await fetch(`${config.grafanaUrl}/api/ds/query`, {
       method: 'POST',
       headers: {
@@ -79,14 +82,28 @@ const queryZabbixData = async (query: TrafficQuery, timeRange: { from: string; t
       })
     });
 
+    console.log(`[Grafana Response] Status: ${response.status}`);
+
     if (!response.ok) {
+      const errorText = await response.text();
+      console.error(`[Grafana Error] ${response.status}: ${errorText}`);
       throw new Error(`Grafana query failed: ${response.status}`);
     }
 
     const data = await response.json() as any;
-    return data.results?.A?.frames?.[0]?.data?.values || null;
+    const values = data.results?.A?.frames?.[0]?.data?.values || null;
+    
+    if (values && values[1]) {
+      console.log(`[Grafana Data] Got ${values[1].length} data points`);
+      console.log(`[Grafana Data] Latest value: ${values[1][values[1].length - 1]} bits/sec`);
+    } else {
+      console.warn(`[Grafana Warning] No data returned for ${query.host} - ${query.item}`);
+      console.log(`[Grafana Response] Structure:`, JSON.stringify(data).substring(0, 500));
+    }
+    
+    return values;
   } catch (error) {
-    console.error('Zabbix query error:', error);
+    console.error('[Zabbix Query Error]', error);
     return null;
   }
 };
@@ -94,15 +111,23 @@ const queryZabbixData = async (query: TrafficQuery, timeRange: { from: string; t
 // Get current traffic stats - REAL DATA from Grafana/Zabbix
 export const getTrafficStats = async (req: Request, res: Response) => {
   try {
+    console.log('[Traffic Stats] Request received');
+    
     if (!config.grafanaUrl || !config.grafanaApiKey) {
+      console.warn('[Traffic Stats] Grafana not configured, using mock data');
       return res.json({
         success: true,
         data: getMockTrafficData('mock')
       });
     }
 
+    console.log(`[Traffic Stats] Grafana URL: ${config.grafanaUrl}`);
+    console.log(`[Traffic Stats] API Key configured: ${config.grafanaApiKey ? 'YES' : 'NO'}`);
+
     // Query last 5 minutes of data
     const timeRange = { from: 'now-5m', to: 'now' };
+    
+    console.log(`[Traffic Stats] Querying ${TRAFFIC_QUERIES.length} endpoints...`);
     
     // Query all traffic endpoints
     const queryResults = await Promise.all(
@@ -134,11 +159,23 @@ export const getTrafficStats = async (req: Request, res: Response) => {
       }
     });
 
+    console.log(`[Traffic Stats] Data point count: ${dataPointCount}`);
+    console.log(`[Traffic Stats] Total bits received: ${totalBitsReceived}`);
+    console.log(`[Traffic Stats] Total bits sent: ${totalBitsSent}`);
+
     // If we have real data, use it
     if (dataPointCount > 0) {
       const avgBits = (totalBitsReceived + totalBitsSent) / dataPointCount;
       const currentTraffic = bitsToGbps(avgBits);
       const peak = bitsToGbps(peakTraffic);
+      const inbound = bitsToGbps(totalBitsReceived / (dataPointCount / 2));
+      const outbound = bitsToGbps(totalBitsSent / (dataPointCount / 2));
+
+      console.log(`[Traffic Stats] Calculated values:`);
+      console.log(`  - Current: ${currentTraffic} Gbps`);
+      console.log(`  - Peak: ${peak} Gbps`);
+      console.log(`  - Inbound: ${inbound} Gbps`);
+      console.log(`  - Outbound: ${outbound} Gbps`);
 
       return res.json({
         success: true,
@@ -151,21 +188,22 @@ export const getTrafficStats = async (req: Request, res: Response) => {
           timestamp: new Date().toISOString(),
           source: 'grafana',
           details: {
-            inbound: bitsToGbps(totalBitsReceived / (dataPointCount / 2)),
-            outbound: bitsToGbps(totalBitsSent / (dataPointCount / 2))
+            inbound: inbound,
+            outbound: outbound
           }
         }
       });
     }
 
     // Fallback if no data
+    console.warn('[Traffic Stats] No data points found, using fallback');
     return res.json({
       success: true,
       data: getMockTrafficData('fallback')
     });
 
   } catch (error) {
-    console.error('Grafana API error:', error);
+    console.error('[Grafana API Error]', error);
     return res.json({
       success: true,
       data: getMockTrafficData('error')
@@ -425,14 +463,23 @@ export const getHosts = async (req: Request, res: Response) => {
 
 // Helper function for mock traffic data
 function getMockTrafficData(source: string) {
+  // Generate realistic-looking demo data with variation
+  const baseTraffic = 847.5;
+  const variance = Math.sin(Date.now() / 60000) * 50; // Varies over minutes
+  const currentTraffic = Math.max(600, baseTraffic + variance);
+  
   return {
-    currentTraffic: 847.5,
+    currentTraffic: Math.round(currentTraffic * 10) / 10,
     unit: 'Gbps',
     peakTraffic: 1240.3,
-    peakTime: new Date().toISOString(),
+    peakTime: new Date(Date.now() - 3600000).toISOString(), // 1 hour ago
     avgTraffic: 623.8,
     timestamp: new Date().toISOString(),
-    source
+    source,
+    details: {
+      inbound: Math.round((currentTraffic * 0.52) * 10) / 10,  // ~52% inbound
+      outbound: Math.round((currentTraffic * 0.48) * 10) / 10   // ~48% outbound
+    }
   };
 }
 
