@@ -50,6 +50,10 @@ const locations = [
       { speed: '10G', setupFee: 0, monthlyFee: 0 },
       { speed: '100G', setupFee: 0, monthlyFee: 0 },
     ],
+    routeServers: [
+      { name: 'RS1', asn: '49378', ipv4: '206.72.210.10', ipv6: '2001:de8:4::4:9378:1' },
+      { name: 'RS2', asn: '49378', ipv4: '206.72.210.11', ipv6: '2001:de8:4::4:9378:2' },
+    ],
     peers: 320,
     capacity: '150+ Tbps',
     uptime: '99.99%',
@@ -80,6 +84,10 @@ const locations = [
       { speed: '1G', setupFee: 0, monthlyFee: 0 },
       { speed: '10G', setupFee: 0, monthlyFee: 0 },
     ],
+    routeServers: [
+      { name: 'RS1', asn: '49378', ipv4: '103.27.170.1', ipv6: '2405:6e00:30c0::1' },
+      { name: 'RS2', asn: '49378', ipv4: '103.27.170.2', ipv6: '2405:6e00:30c0::2' },
+    ],
     peers: 280,
     capacity: '120+ Tbps',
     uptime: '99.98%',
@@ -108,6 +116,10 @@ const locations = [
     pricingTiers: [
       { speed: '1G', setupFee: 0, monthlyFee: 0 },
       { speed: '10G', setupFee: 0, monthlyFee: 0 },
+    ],
+    routeServers: [
+      { name: 'RS1', asn: '49378', ipv4: '103.27.171.1', ipv6: '2405:6e00:30c1::1' },
+      { name: 'RS2', asn: '49378', ipv4: '103.27.171.2', ipv6: '2405:6e00:30c1::2' },
     ],
     peers: 180,
     capacity: '80+ Tbps',
@@ -138,6 +150,10 @@ const locations = [
       { speed: '1G', setupFee: 0, monthlyFee: 0 },
       { speed: '10G', setupFee: 0, monthlyFee: 0 },
     ],
+    routeServers: [
+      { name: 'RS1', asn: '49378', ipv4: '103.27.172.1', ipv6: '2405:6e00:30c2::1' },
+      { name: 'RS2', asn: '49378', ipv4: '103.27.172.2', ipv6: '2405:6e00:30c2::2' },
+    ],
     peers: 120,
     capacity: '50+ Tbps',
     uptime: '99.92%',
@@ -167,6 +183,10 @@ const locations = [
       { speed: '1G', setupFee: 0, monthlyFee: 0 },
       { speed: '10G', setupFee: 0, monthlyFee: 0 },
     ],
+    routeServers: [
+      { name: 'RS1', asn: '49378', ipv4: '103.27.173.1', ipv6: '2405:6e00:30c3::1' },
+      { name: 'RS2', asn: '49378', ipv4: '103.27.173.2', ipv6: '2405:6e00:30c3::2' },
+    ],
     peers: 150,
     capacity: '60+ Tbps',
     uptime: '99.96%',
@@ -195,6 +215,10 @@ const locations = [
     pricingTiers: [
       { speed: '1G', setupFee: 0, monthlyFee: 0 },
       { speed: '10G', setupFee: 0, monthlyFee: 0 },
+    ],
+    routeServers: [
+      { name: 'RS1', asn: '49378', ipv4: '103.27.174.1', ipv6: '2405:6e00:30c4::1' },
+      { name: 'RS2', asn: '49378', ipv4: '103.27.174.2', ipv6: '2405:6e00:30c4::2' },
     ],
     peers: 200,
     capacity: '90+ Tbps',
@@ -227,6 +251,10 @@ const locations = [
       { speed: '1G', setupFee: 0, monthlyFee: 0 },
       { speed: '10G', setupFee: 0, monthlyFee: 0 },
     ],
+    routeServers: [
+      { name: 'RS1', asn: '49378', ipv4: '185.1.100.1', ipv6: '2001:7f8:61::1' },
+      { name: 'RS2', asn: '49378', ipv4: '185.1.100.2', ipv6: '2001:7f8:61::2' },
+    ],
     peers: 250,
     capacity: '100+ Tbps',
     uptime: '99.99%',
@@ -255,6 +283,10 @@ const locations = [
     pricingTiers: [
       { speed: '1G', setupFee: 0, monthlyFee: 0 },
       { speed: '10G', setupFee: 0, monthlyFee: 0 },
+    ],
+    routeServers: [
+      { name: 'RS1', asn: '49378', ipv4: '185.1.101.1', ipv6: '2001:7f8:62::1' },
+      { name: 'RS2', asn: '49378', ipv4: '185.1.101.2', ipv6: '2001:7f8:62::2' },
     ],
     peers: 100,
     capacity: '40+ Tbps',
@@ -287,6 +319,10 @@ const locations = [
       { speed: '1G', setupFee: 0, monthlyFee: 0 },
       { speed: '10G', setupFee: 0, monthlyFee: 0 },
     ],
+    routeServers: [
+      { name: 'RS1', asn: '49378', ipv4: '194.126.200.1', ipv6: '2001:7f8:1e::1' },
+      { name: 'RS2', asn: '49378', ipv4: '194.126.200.2', ipv6: '2001:7f8:1e::2' },
+    ],
     peers: 180,
     capacity: '80+ Tbps',
     uptime: '99.98%',
@@ -318,6 +354,10 @@ const locations = [
       { speed: '1G', setupFee: 0, monthlyFee: 0 },
       { speed: '10G', setupFee: 0, monthlyFee: 0 },
     ],
+    routeServers: [
+      { name: 'RS1', asn: '49378', ipv4: '206.41.110.1', ipv6: '2001:504:0:2::1' },
+      { name: 'RS2', asn: '49378', ipv4: '206.41.110.2', ipv6: '2001:504:0:2::2' },
+    ],
     peers: 220,
     capacity: '120+ Tbps',
     uptime: '99.99%',
@@ -347,6 +387,10 @@ const locations = [
       { speed: '1G', setupFee: 0, monthlyFee: 0 },
       { speed: '10G', setupFee: 0, monthlyFee: 0 },
     ],
+    routeServers: [
+      { name: 'RS1', asn: '49378', ipv4: '206.197.187.1', ipv6: '2001:504:0:4::1' },
+      { name: 'RS2', asn: '49378', ipv4: '206.197.187.2', ipv6: '2001:504:0:4::2' },
+    ],
     peers: 300,
     capacity: '150+ Tbps',
     uptime: '99.99%',
@@ -375,6 +419,10 @@ const locations = [
     pricingTiers: [
       { speed: '1G', setupFee: 0, monthlyFee: 0 },
       { speed: '10G', setupFee: 0, monthlyFee: 0 },
+    ],
+    routeServers: [
+      { name: 'RS1', asn: '49378', ipv4: '187.16.217.1', ipv6: '2001:13c7:7000::1' },
+      { name: 'RS2', asn: '49378', ipv4: '187.16.217.2', ipv6: '2001:13c7:7000::2' },
     ],
     peers: 80,
     capacity: '30+ Tbps',
@@ -406,6 +454,10 @@ const locations = [
     pricingTiers: [
       { speed: '1G', setupFee: 0, monthlyFee: 0 },
       { speed: '10G', setupFee: 0, monthlyFee: 0 },
+    ],
+    routeServers: [
+      { name: 'RS1', asn: '49378', ipv4: '200.0.204.1', ipv6: '2001:13c7:6000::1' },
+      { name: 'RS2', asn: '49378', ipv4: '200.0.204.2', ipv6: '2001:13c7:6000::2' },
     ],
     peers: 120,
     capacity: '50+ Tbps',

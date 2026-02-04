@@ -34,6 +34,12 @@ export interface ILocationDocument extends Document {
     setupFee: number;
     currency: string;
   }>;
+  routeServers: Array<{
+    name: string;
+    asn: string;
+    ipv4: string;
+    ipv6: string;
+  }>;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -98,6 +104,28 @@ const enabledSiteSchema = new Schema(
       type: String,
       enum: ['available', 'coming-soon'],
       default: 'available',
+    },
+  },
+  { _id: false }
+);
+
+const routeServerSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    asn: {
+      type: String,
+      required: true,
+    },
+    ipv4: {
+      type: String,
+      required: true,
+    },
+    ipv6: {
+      type: String,
+      required: true,
     },
   },
   { _id: false }
@@ -214,6 +242,10 @@ const locationSchema = new Schema(
     },
     pricing: {
       type: [pricingTierSchema],
+      default: [],
+    },
+    routeServers: {
+      type: [routeServerSchema],
       default: [],
     },
 

@@ -42,6 +42,7 @@ export const getAllLocations = async (req: Request, res: Response): Promise<void
         established: l.established,
         cityImage: l.cityImage,
         pricing: l.pricing,
+        routeServers: l.routeServers,
       })),
     });
 
@@ -98,6 +99,7 @@ export const getLocation = async (req: Request, res: Response): Promise<void> =>
         established: location.established,
         cityImage: location.cityImage,
         pricing: location.pricing,
+        routeServers: location.routeServers,
       },
     });
   } catch (error) {
@@ -118,7 +120,7 @@ export const createLocation = async (req: Request, res: Response): Promise<void>
     const { 
       id, name, coordinates, code, region, asnList, enabledSites, status,
       country, continentId, latency, datacenter, address, ixName, 
-      capacity, portSpeeds, protocols, features, description, established, cityImage, pricing
+      capacity, portSpeeds, protocols, features, description, established, cityImage, pricing, routeServers
     } = req.body;
 
     if (!id || !name || !coordinates || !code || !region) {
@@ -154,7 +156,8 @@ export const createLocation = async (req: Request, res: Response): Promise<void>
       protocols: protocols || ['BGP-4', 'IPv4', 'IPv6'], 
       features: features || [], 
       description, established, cityImage, 
-      pricing: pricing || []
+      pricing: pricing || [],
+      routeServers: routeServers || []
     });
 
     fs.writeFileSync('debug_res.json', JSON.stringify(location.toJSON(), null, 2));
@@ -187,6 +190,7 @@ export const createLocation = async (req: Request, res: Response): Promise<void>
         established: location.established,
         cityImage: location.cityImage,
         pricing: location.pricing,
+        routeServers: location.routeServers,
       },
       message: 'Location created successfully',
     });
@@ -220,7 +224,7 @@ export const updateLocation = async (req: Request, res: Response): Promise<void>
       'name', 'coordinates', 'code', 'region', 'asnList', 'enabledSites', 'status',
       'country', 'continentId', 'latency', 'datacenter', 'address', 'ixName', 
       'peers', 'capacity', 'portSpeeds', 'protocols', 'features', 
-      'description', 'established', 'cityImage', 'pricing'
+      'description', 'established', 'cityImage', 'pricing', 'routeServers'
     ];
     
     allowedUpdates.forEach(field => {
@@ -259,6 +263,7 @@ export const updateLocation = async (req: Request, res: Response): Promise<void>
         established: location.established,
         cityImage: location.cityImage,
         pricing: location.pricing,
+        routeServers: location.routeServers,
       },
       message: 'Location updated successfully',
     });
