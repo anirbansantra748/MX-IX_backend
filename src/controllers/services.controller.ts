@@ -269,7 +269,7 @@ export const updateServiceItem = async (req: Request, res: Response): Promise<vo
       return;
     }
 
-    const index = parseInt(itemIndex, 10);
+    const index = parseInt(itemIndex as string, 10);
     if (isNaN(index) || index < 0 || index >= service.items.length) {
       res.status(404).json({
         success: false,
@@ -319,7 +319,7 @@ export const deleteServiceItem = async (req: Request, res: Response): Promise<vo
       return;
     }
 
-    const index = parseInt(itemIndex, 10);
+    const index = parseInt(itemIndex as string, 10);
     if (isNaN(index) || index < 0 || index >= service.items.length) {
       res.status(404).json({
         success: false,

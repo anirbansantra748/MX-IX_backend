@@ -412,7 +412,7 @@ export const updateASN = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    const asnIndex = location.asnList.findIndex(a => a.asnNumber === parseInt(asnNumber, 10));
+    const asnIndex = location.asnList.findIndex(a => a.asnNumber === parseInt(asnNumber as string, 10));
     if (asnIndex === -1) {
       res.status(404).json({
         success: false,
@@ -459,7 +459,7 @@ export const deleteASN = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    const asnIndex = location.asnList.findIndex(a => a.asnNumber === parseInt(asnNumber, 10));
+    const asnIndex = location.asnList.findIndex(a => a.asnNumber === parseInt(asnNumber as string, 10));
     if (asnIndex === -1) {
       res.status(404).json({
         success: false,
