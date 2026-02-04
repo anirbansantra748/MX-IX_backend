@@ -21,7 +21,7 @@ export const corsOptions: cors.CorsOptions = {
       return callback(null, true);
     }
 
-    const isAllowedOrigin = allowedOrigins.includes(origin) || origin.endsWith('.vercel.app');
+    const isAllowedOrigin = allowedOrigins.includes(origin) || origin.endsWith('.vercel.app') || origin.endsWith('mx-ix.com');
 
     if (isAllowedOrigin) {
       callback(null, true);
